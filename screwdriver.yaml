@@ -1,7 +1,7 @@
 ---
 jobs:
     main:
-        annotations:
+        annotatio:
             beta.screwdriver.cd/executor: k8s-vm
         image: node:6
         steps:
