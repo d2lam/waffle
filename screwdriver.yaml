@@ -1,12 +1,23 @@
----
+
+shared:
+    image: golang:latest
+    environment:
+        GOPATH: /sd/workspace
+        
 jobs:
-    main:
-        image: node:6
+    no_main:
+        requires: [~commit, ~pr]
         steps:
-            - docker_build: docker build --tag test:hello -q .
-            - docker_images: docker images
+            - print: echo running main
+    other_main:
+        requires: [~commit, ~pr]
+        steps:
+            - other_print: echo running other_main
     publish:
-        image: node:6
-        steps:
-            - echo: echo hi
-        requires: main
+       requires: no_main
+       steps:
+           - print: echo running publish
+    other_publish:
+       requires: other_main
+       steps:
+           - print: echo running other_publish
