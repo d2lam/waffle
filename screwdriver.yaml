@@ -1,9 +1,12 @@
 ---
 jobs:
     main:
-        annotatio:
-            beta.screwdriver.cd/executor: k8s-vm
         image: node:6
         steps:
             - docker_build: docker build --tag test:hello -q .
             - docker_images: docker images
+    publish:
+        image: node:6
+        steps:
+            - echo: echo hi
+        requires: main
