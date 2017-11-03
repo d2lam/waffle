@@ -1,23 +1,20 @@
-
 shared:
-    image: golang:latest
-    environment:
-        GOPATH: /sd/workspace
-        
+    image: node:6
 jobs:
-    no_main:
-        requires: [~commit, ~pr]
+    A:
         steps:
-            - print: echo running main
-    other_main:
+            - echo: echo hi
         requires: [~commit, ~pr]
+    B:
         steps:
-            - other_print: echo running other_main
-    publish:
-       requires: no_main
-       steps:
-           - print: echo running publish
-    other_publish:
-       requires: other_main
-       steps:
-           - print: echo running other_publish
+            - echo: echo bye
+        requires: A
+    C:
+        steps:
+            - echo: sleep 50
+        requires: ~commit
+    D:
+        steps:
+            - echo: echo stuff
+        requires: [A,C]
+            
