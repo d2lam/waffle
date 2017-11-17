@@ -9,8 +9,12 @@ jobs:
         steps:
             - echo: echo bye
         requires: [~commit]
+    C:
+        steps:
+            - echo: echo C
+        requires: [B]
     D:
         steps:
             - echo: echo stuff
-        requires: [A,B]
+        requires: [A,C]
             
