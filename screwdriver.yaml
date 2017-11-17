@@ -8,7 +8,7 @@ jobs:
     B:
         steps:
             - echo: echo bye
-        requires: A
+        requires: [~commit, ~pr]
     D:
         steps:
             - echo: echo stuff
